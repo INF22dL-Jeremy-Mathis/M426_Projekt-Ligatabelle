@@ -21,7 +21,8 @@ Die präsentierte Tabelle umfasst folgende Informationen:
 - Differenz
 - Punkte
 
-![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/eaec051b-1da7-461d-a0c3-22ca86410963)
+![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/80002b3f-55fb-4d80-b80e-eca7c776b06f)
+
 
 
 # Projekt "Ligatabelle"
