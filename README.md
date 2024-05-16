@@ -2,6 +2,9 @@
 
 Unsere C# Anwendung bietet eine interaktive Benutzeroberfläche zur Anzeige von Fußball-Ligatabellen. Der Benutzer wird aufgefordert, eine Liga aus einer Liste verfügbarer Ligen auszuwählen. Anschließend wird eine detaillierte Tabelle mit Platzierungen, Statistiken und anderen relevanten Informationen zur ausgewählten Liga angezeigt.
 
+![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/cc663308-9dc5-453a-84e8-ef889d86f1d3)
+
+
 
 
 ## Tabellenformat
@@ -18,6 +21,7 @@ Die präsentierte Tabelle umfasst folgende Informationen:
 - Differenz
 - Punkte
 
+![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/eaec051b-1da7-461d-a0c3-22ca86410963)
 
 
 # Projekt "Ligatabelle"
@@ -64,6 +68,9 @@ Die Syntax für den Aufruf lautet wie folgt:
 
 Beispiel:
 `.\LigaResults.exe bundesliga true`
-Dieser Befehl ruft die Ergebnisse für die bundesliga ab und gibt sie als JSON-String aus.
+
+![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/bcd861e1-feb4-4ee8-93af-2cbb4e8e3363)
+
+
 
 
