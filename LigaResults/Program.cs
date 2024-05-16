@@ -176,9 +176,9 @@
 
 
       // Ausgabe der Ergebnisse als eine Ligatabelle
-      public static void PrintLigaTable(List<TeamResult> ligaResults)
+      public static void PrintLigaTable(List<TeamResult> ligaResults, string liga)
       {
-        Console.WriteLine($"{"\nLigatabelle:",-20}{"",35}");
+        Console.WriteLine($"{"\nLigatabelle: " + liga,-20}{"",35}");
         Console.WriteLine("-----------------------------------------");
         Console.WriteLine($"{"Place",-8}{"Team",-26}{"Wins",-8}{"Losses",-10}{"Draws",-8}{"Goals shot",-13}{"Goals taken",-14}{"Diff",-8}{"Points",-10}");
         foreach (var result in ligaResults)
@@ -221,7 +221,7 @@
             }
             else
             {
-              PrintLigaTable(ligaResultsList);
+              PrintLigaTable(ligaResultsList, ligaSelection);
             }
             Directory.SetCurrentDirectory(execFolderPath);
 
