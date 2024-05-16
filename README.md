@@ -13,7 +13,9 @@ Die präsentierte Tabelle umfasst folgende Informationen:
 - Anzahl der Siege
 - Anzahl der Niederlagen
 - Anzahl der Unentschieden
-- Tore (geschossen:erhalten)
+- Tore Geschossen
+- Tore Erhalten
+- Differenz
 - Punkte
 
 
