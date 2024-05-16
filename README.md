@@ -8,9 +8,9 @@ Dieses Projekt bietet eine C# Konsolenanwendung zur Anzeige von Fußball-Ligatab
    
 2. Klone das Repository und öffne es in Visual Studio Code oder einem anderen Texteditor.
    
-3. Navigiere im Terminal in das Verzeichnis "LigaResults".
+3. Navigiere im Terminal in das Verzeichnis `M426_Projekt-Ligatabelle/LigaResults`.
    
-4. Führe den Befehl `dotnet publish` aus. Dieser Schritt erstellt eine ausführbare Datei `LigaResults.exe`, die im Ordner `Projekt/LigaResults/bin/Release/publish` zu finden ist.
+4. Führe den Befehl `dotnet publish` aus. Dieser Schritt erstellt eine ausführbare Datei `LigaResults.exe`, die im Ordner `M426_Projekt-Ligatabelle/LigaResults/bin/Release/publish` zu finden ist.
    
 5. Kopiere die `LigaResults.exe` in den Datenquellordner mit dem Namen "soccer-results".
    
