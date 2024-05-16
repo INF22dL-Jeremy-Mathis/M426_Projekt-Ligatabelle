@@ -180,10 +180,10 @@
       {
         Console.WriteLine($"{"\nLigatabelle:",-20}{"",35}");
         Console.WriteLine("-----------------------------------------");
-        Console.WriteLine($"{"Platz",-10}{"Team",-30}{"Siege",-10}{"Unentschieden",-15}{"Niederlagen",-15}{"Tore",-10}{"Differenz",-15}{"Punkte",-10}");
+        Console.WriteLine($"{"Place",-8}{"Team",-26}{"Wins",-8}{"Losses",-10}{"Draws",-8}{"Goals shot",-13}{"Goals taken",-14}{"Diff",-8}{"Points",-10}");
         foreach (var result in ligaResults)
         {
-          Console.WriteLine($"{result.Place,-10}{result.Team,-30}{result.Wins,-10}{result.Draws,-15}{result.Losses,-15}{result.GoalsShot,-10}{result.Difference,-15}{result.Points,-10}");
+          Console.WriteLine($"{result.Place,-8}{result.Team,-26}{result.Wins,-8}{result.Losses,-10}{result.Draws,-8}{result.GoalsShot,-13}{result.GoalsTaken,-14}{result.Difference,-8}{result.Points,-10}");
         }
       }
 
@@ -211,7 +211,9 @@
             List<MatchResult> matchResultsList = GetData(pathToLiga);
             List<TeamResult> ligaResultsList = GroupByTeamAndPoints(matchResultsList);
 
-            Console.Clear();
+            if(ligaSelectionParam == null){Console.Clear();}
+            else{Console.WriteLine("\n");}
+
             if (outputAsJSON == "true" || outputAsJSON == "True")
             {
               // output ligaResults as Json
