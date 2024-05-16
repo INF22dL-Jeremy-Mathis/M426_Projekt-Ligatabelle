@@ -24,6 +24,22 @@ Dieses Projekt bietet eine C# Konsolenanwendung zur Anzeige von Fußball-Ligatab
 
 10. Nach der Ausgabe der Ergebnisse wirst du gefragt, ob du die Applikation schließen Du kannst entweder mit Ja bestätigen oder mit Nein zurück zur Ligaauswahl gelangen.
 
+## Verwendung der .exe über die Befehlszeile
+
+Alternativ zur Ausführung der `.exe` durch Doppelklick kannst du die Anwendung auch über die Befehlszeile mit Parametern aufrufen.
+
+Die Syntax für den Aufruf lautet wie folgt:
+
+`.\LigaResults.exe Liganame AusgabeAlsJson`
+
+- `Liganame`: Der Name der Liga, für die die Ergebnisse abgerufen werden sollen. Dieser Parameter ist case-sensitive und muss bereits bekannt sein.
+
+- `AusgabeAlsJson`: Optionaler Parameter. Wenn der Wert "true" mitgegeben wird, werden die Ergebnisse als JSON-String ausgegeben. Andernfalls werden die Ergebnisse als formatierte Tabelle angezeigt.
+
+Beispiel:
+`.\LigaResults.exe bundesliga true`
+Dieser Befehl ruft die Ergebnisse für die bundesliga ab und gibt sie als JSON-String aus.
+
 ## Designbeschreibung: C# Konsolenanwendung
 
 Unsere C# Anwendung bietet eine interaktive Benutzeroberfläche zur Anzeige von Fußball-Ligatabellen. Der Benutzer wird aufgefordert, eine Liga aus einer Liste verfügbarer Ligen auszuwählen. Anschließend wird eine detaillierte Tabelle mit Platzierungen, Statistiken und anderen relevanten Informationen zur ausgewählten Liga angezeigt.
