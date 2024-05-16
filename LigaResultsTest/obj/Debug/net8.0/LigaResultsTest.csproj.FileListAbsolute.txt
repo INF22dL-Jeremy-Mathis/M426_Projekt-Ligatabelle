@@ -1,0 +1,6 @@
+C:\Users\J.M\Desktop\ProjektLigaResults\LigaResultsTest\bin\Debug\net8.0\CoverletSourceRootsMapping_LigaResultsTest
+C:\Users\J.M\Desktop\ProjektLigaResults\LigaResultsTest\obj\Debug\net8.0\LigaResultsTest.csproj.AssemblyReference.cache
+C:\Users\J.M\Desktop\ProjektLigaResults\LigaResultsTest\obj\Debug\net8.0\LigaResultsTest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\J.M\Desktop\ProjektLigaResults\LigaResultsTest\obj\Debug\net8.0\LigaResultsTest.AssemblyInfoInputs.cache
+C:\Users\J.M\Desktop\ProjektLigaResults\LigaResultsTest\obj\Debug\net8.0\LigaResultsTest.AssemblyInfo.cs
+C:\Users\J.M\Desktop\ProjektLigaResults\LigaResultsTest\obj\Debug\net8.0\LigaResultsTest.csproj.CoreCompileInputs.cache
