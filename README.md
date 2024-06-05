@@ -68,13 +68,17 @@ Die Syntax für den Aufruf lautet wie folgt:
 - `AusgabeAlsJson`: Optionaler Parameter. Wenn der Wert "true" übergeben wird, werden die Ergebnisse als JSON-String ausgegeben. Andernfalls werden die Ergebnisse als formatierte Tabelle angezeigt. Wird "false" übergeben, findet die Ausgabe als grafische Tabelle statt.
 - `bisSpieltag`: Optionaler Parameter, um den maximalen Spieltag für die Berechnung festzulegen. (Endergebnisse werden berechnet, wenn dieser leer gelassen wird.)
 
+
 Beispiel ohne Spieltagbeschränkung als JSON:
 `.\LigaResults.exe bundesliga true`
+
 ![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/c8bb99fd-067d-4139-963a-15a2539e802b)
+
 
 
 Beispiel mit Spieltagbegrenzung als Grafische Tabelle:
 `.\LigaResults.exe bundesliga false 15`
+
 ![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/7523f439-5d45-436a-babd-5b5b39be9502)
 
 
