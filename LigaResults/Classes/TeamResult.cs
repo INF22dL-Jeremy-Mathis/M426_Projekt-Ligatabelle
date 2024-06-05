@@ -1,15 +1,15 @@
- namespace LigaResults
+namespace LigaResults
 {
-    public class TeamResult
-      {
-        public int? Place { get; set; }
-        public string? Team { get; set; }
-        public int? Wins { get; set; }
-        public int? Losses { get; set; }
-        public int? Draws { get; set; }
-        public int? GoalsShot { get; set; }
-        public int? GoalsTaken { get; set; }
-        public int? Difference { get; set; }
-        public int? Points { get; set; }
-      }
+  public class TeamResult
+  {
+    public int? Rang { get; set; }
+    public string? Name { get; set; }
+    public int? Siege { get; set; }
+    public int? Niederlagen { get; set; }
+    public int? Unentschieden { get; set; }
+    public int? Tore { get; set; }
+    public int? Gegentore { get; set; }
+    public int? Tordifferenz { get; set; }
+    public int? Punkte { get; set; }
+  }
 }
