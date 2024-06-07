@@ -144,33 +144,44 @@
       }
 
       // Gruppieren der zusammengestellten Ergebnisliste aus den TXT-Dateien nach dem TeamName-Feld und sortieret basierend auf dem Punktesystem
-      public static List<TeamResult> GroupByTeamAndPoints(List<MatchResult> results)
+      public static List<TeamResult> GroupByTeam(List<MatchResult> results)
       {
+        return results.GroupBy(t => t.TeamName)
+            .Select(g => new TeamResult
+            {
+              Name = g.Key,
+              Siege = g.Sum(t => t.Wins),
+              Niederlagen = g.Sum(t => t.Losses),
+              Unentschieden = g.Sum(t => t.Draws),
+              Tore = g.Sum(t => t.GoalsShot),
+              Gegentore = g.Sum(t => t.GoalsTaken),
+              Tordifferenz = g.Sum(t => t.GoalsShot) - g.Sum(t => t.GoalsTaken),
+              Punkte = (g.Sum(t => t.Wins) * 3) + g.Sum(t => t.Draws)
+            })
+            .ToList();
+      }
 
-        List<TeamResult> teamResults = results.GroupBy(t => t.TeamName)
-          .Select(g => new TeamResult
-          {
-            Name = g.Key,
-            Siege = g.Sum(t => t.Wins),
-            Niederlagen = g.Sum(t => t.Losses),
-            Unentschieden = g.Sum(t => t.Draws),
-            Tore = g.Sum(t => t.GoalsShot),
-            Gegentore = g.Sum(t => t.GoalsTaken),
-            Tordifferenz = g.Sum(t => t.GoalsShot) - g.Sum(t => t.GoalsTaken),
-            Punkte = (g.Sum(t => t.Wins) * 3) + g.Sum(t => t.Draws)
-          })
-          .OrderByDescending(f => f.Punkte)
-          .ThenByDescending(f => f.Tordifferenz)
-          .ThenByDescending(f => f.Siege)
-          .ThenBy(f => f.Name)
-          .ToList();
+      public static List<TeamResult> SortTeams(List<TeamResult> teamResults)
+      {
+        List<TeamResult> sortedResults = teamResults
+            .OrderByDescending(f => f.Punkte)
+            .ThenByDescending(f => f.Tordifferenz)
+            .ThenByDescending(f => f.Siege)
+            .ThenBy(f => f.Name)
+            .ToList();
 
-        for (int i = 0; i < teamResults.Count; i++)
+        for (int i = 0; i < sortedResults.Count; i++)
         {
-          teamResults[i].Rang = i + 1;
+          sortedResults[i].Rang = i + 1;
         }
 
-        return teamResults;
+        return sortedResults;
+      }
+
+      public static List<TeamResult> GroupByTeamAndPoints(List<MatchResult> results)
+      {
+        List<TeamResult> groupedTeams = GroupByTeam(results);
+        return SortTeams(groupedTeams);
       }
 
       // Umwandlung der Ergebnisse im JSON Format
@@ -187,12 +198,12 @@
           Console.WriteLine($"{"\nLigatabelle bis spieltag " + bisSpieltag + ": " + liga,-20}{"",35}");
         else
           Console.WriteLine($"{"\nLigatabelle: " + liga + " - Endergebnisse",-20}{"",35}");
-        Console.WriteLine($"{"--------------------------------------------------------------------------------------------------------",-104}");
-        Console.WriteLine($"{"Rang",-5}{"Name",-25}{"Punkte",-10}{"Siege/Niederlagen/Unentschieden",-35}{"Tore/Gegentore",-17}{"Tordifferenz",-12}");
-        Console.WriteLine("--------------------------------------------------------------------------------------------------------");
+        Console.WriteLine($"{"------------------------------------------------------------------------------------------------------------------------",120}");
+        Console.WriteLine($"{"Rang",5}{"",2}{"Name",-41}{"Punkte",6}{"",2}{"Siege",5}{"",2}{"Niederlagen",11}{"",2}{"Unentschieden",13}{"",2}{"Tore",4}{"",2}{"Gegentore",9}{"",2}{"Tordifferenz",12}");
+        Console.WriteLine($"{"------------------------------------------------------------------------------------------------------------------------",120}");
         foreach (var result in ligaResults)
         {
-          Console.WriteLine($"{result.Rang,-5}{result.Name,-25}{result.Punkte,-10}{"",-10}{result.Siege + "/" + result.Niederlagen + "/" + result.Unentschieden,-25}{result.Tore}/{result.Gegentore,-17}{result.Tordifferenz,-12}");
+          Console.WriteLine($"{result.Rang,5}{"",2}{result.Name,-41}{result.Punkte,6}{"",2}{result.Siege,5}{"",2}{result.Niederlagen,11}{"",2}{result.Unentschieden,13}{"",2}{result.Tore,4}{"",2}{result.Gegentore,9}{"",2}{result.Tordifferenz,12}");
         }
       }
 
