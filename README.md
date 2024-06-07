@@ -65,13 +65,20 @@ Die Syntax für den Aufruf lautet wie folgt:
 
 - `Liganame`: Der Name der Liga, für die die Ergebnisse abgerufen werden sollen. Dieser Parameter ist case-sensitive und muss bereits bekannt sein.
 
-- `AusgabeAlsJson`: Optionaler Parameter. Wenn der Wert "true" mitgegeben wird, werden die Ergebnisse als JSON-String ausgegeben. Andernfalls werden die Ergebnisse als formatierte Tabelle angezeigt.
+- `AusgabeAlsJson`: Optionaler Parameter. Wenn der Wert "true" übergeben wird, werden die Ergebnisse als JSON-String ausgegeben. Andernfalls werden die Ergebnisse als formatierte Tabelle angezeigt. Wird "false" übergeben, findet die Ausgabe als grafische Tabelle statt.
+- `bisSpieltag`: Optionaler Parameter, um den maximalen Spieltag für die Berechnung festzulegen. (Endergebnisse werden berechnet, wenn dieser leer gelassen wird.)
 
-Beispiel:
+
+Beispiel ohne Spieltagbeschränkung als JSON:
 `.\LigaResults.exe bundesliga true`
 
-![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/bcd861e1-feb4-4ee8-93af-2cbb4e8e3363)
+![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/c8bb99fd-067d-4139-963a-15a2539e802b)
 
 
+
+Beispiel mit Spieltagbegrenzung als Grafische Tabelle:
+`.\LigaResults.exe bundesliga false 15`
+
+![image](https://github.com/INF22dL-Jeremy-Mathis/M426_Projekt-Ligatabelle/assets/124058148/7523f439-5d45-436a-babd-5b5b39be9502)
 
 
