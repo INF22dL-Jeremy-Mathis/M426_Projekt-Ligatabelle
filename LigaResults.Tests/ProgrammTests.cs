@@ -53,7 +53,18 @@ namespace LigaResults.Tests
         {
             // Arrange
             string path = GetTestDataPath();
-            var expectedLigas = new List<string> { "difference-sort", "name-sort", "points-sort", "wins-sort" };
+            var expectedLigas = new List<string>
+            {
+                "bundesliga",
+                "la-liga",
+                "ligue-1",
+                "premier-league",
+                "serie-a",
+                "sort-difference",
+                "sort-name",
+                "sort-points",
+                "sort-wins"
+            };
 
             // Act
             var result = Program.GetAvailableLigas(path);
