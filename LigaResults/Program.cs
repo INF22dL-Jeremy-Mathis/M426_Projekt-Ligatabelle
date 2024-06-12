@@ -177,9 +177,14 @@
     {
       while (true)
       {
-        int? bisSpieltag = null;
-
         var execFolderPath = Directory.GetCurrentDirectory();
+
+        // Check if the application is running via `dotnet run` and adjust the path to the TestData folder accordingly
+        if (execFolderPath.Contains("\\LigaResults"))
+        {
+          string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+          execFolderPath = Path.GetFullPath(Path.Combine(baseDirectory, @"..\..\..\..\..\TestData\soccer-results"));
+        }
 
         // Validate the execution folder
         if (!IsSoccerResultsFolder(execFolderPath))
@@ -212,7 +217,7 @@
 
         var pathToLiga = Path.Combine(execFolderPath, ligaSelection);
         var totalSpieltage = Directory.GetFiles(pathToLiga, "*.txt").Length;
-
+        int? bisSpieltag = null;
 
         bisSpieltag = GetMaxPlaydaySelection(totalSpieltage);     // Query user for maximum playday
         var matchResultsList = GetData(pathToLiga, bisSpieltag);  // Retrieve match data from .txt files
