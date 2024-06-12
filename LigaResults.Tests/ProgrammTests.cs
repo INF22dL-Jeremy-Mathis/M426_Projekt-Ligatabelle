@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-using System.IO.Abstractions;
-using System.IO.Abstractions.TestingHelpers; // Ensure this is correct
-
 namespace LigaResults.Tests
 {
     public class ProgramTests
     {
+        /// <summary>
+        /// Gets the path to the TestData directory containing the soccer-results folder.
+        /// </summary>
+        /// <returns>The full path to the soccer-results directory.</returns>
         private string GetTestDataPath()
         {
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -16,7 +13,9 @@ namespace LigaResults.Tests
             return Path.Combine(projectDirectory, "TestData/soccer-results");
         }
 
-
+        /// <summary>
+        /// Validates if the IsSoccerResultsFolder method returns true when the path contains "soccer-results".
+        /// </summary>
         [Fact]
         public void IsSoccerResultsFolder_ShouldReturnTrue_WhenPathContainsSoccerResults()
         {
@@ -30,6 +29,9 @@ namespace LigaResults.Tests
             Assert.True(result);
         }
 
+        /// <summary>
+        /// Validates if the IsSoccerResultsFolder method returns false when the path does not contain "soccer-results".
+        /// </summary>
         [Fact]
         public void IsSoccerResultsFolder_ShouldReturnFalse_WhenPathDoesNotContainSoccerResults()
         {
@@ -43,6 +45,9 @@ namespace LigaResults.Tests
             Assert.False(result);
         }
 
+        /// <summary>
+        /// Validates if the GetAvailableLigas method returns the expected list of ligas.
+        /// </summary>
         [Fact]
         public void GetAvailableLigas_ShouldReturnListOfLigas()
         {
@@ -57,6 +62,11 @@ namespace LigaResults.Tests
             Assert.Equal(expectedLigas, result);
         }
 
+        /// <summary>
+        /// Validates if the SelectLiga method returns the correct liga name based on the input.
+        /// </summary>
+        /// <param name="input">User input.</param>
+        /// <param name="expected">Expected liga name.</param>
         [Theory]
         [InlineData("1", "Liga1")]
         [InlineData("2", "Liga2")]
@@ -74,6 +84,9 @@ namespace LigaResults.Tests
             Assert.Equal(expected, result);
         }
 
+        /// <summary>
+        /// Validates if the SelectLiga method returns null when the input is invalid.
+        /// </summary>
         [Fact]
         public void SelectLiga_ShouldReturnNull_WhenInvalidInput()
         {
@@ -88,6 +101,9 @@ namespace LigaResults.Tests
             Assert.Null(result);
         }
 
+        /// <summary>
+        /// Validates if the ParseMatchResult method returns the correct match result object.
+        /// </summary>
         [Fact]
         public void ParseMatchResult_ShouldReturnCorrectMatchResult()
         {
@@ -113,6 +129,9 @@ namespace LigaResults.Tests
             Assert.Equal(0, result.Team2.Draws);
         }
 
+        /// <summary>
+        /// Validates if the GroupByTeam method returns the correct team results.
+        /// </summary>
         [Fact]
         public void GroupByTeam_ShouldReturnCorrectTeamResults()
         {
@@ -145,6 +164,9 @@ namespace LigaResults.Tests
             Assert.Equal(4, teamA.Punkte);
         }
 
+        /// <summary>
+        /// Validates if the SortTeams method correctly sorts the teams.
+        /// </summary>
         [Fact]
         public void SortTeams_ShouldReturnSortedTeams()
         {
@@ -165,6 +187,9 @@ namespace LigaResults.Tests
             Assert.Equal("TeamC", result[2].Name);
         }
 
+        /// <summary>
+        /// Validates if the GetMaxPlaydaySelection method returns null when the input is empty.
+        /// </summary>
         [Fact]
         public void GetMaxPlaydaySelection_ShouldReturnNull_WhenInputIsEmpty()
         {
@@ -182,6 +207,9 @@ namespace LigaResults.Tests
             Assert.Null(result);
         }
 
+        /// <summary>
+        /// Validates if the GetMaxPlaydaySelection method returns the correct playday when the input is valid.
+        /// </summary>
         [Fact]
         public void GetMaxPlaydaySelection_ShouldReturnPlayday_WhenValidInput()
         {
@@ -199,6 +227,9 @@ namespace LigaResults.Tests
             Assert.Equal(3, result);
         }
 
+        /// <summary>
+        /// Validates if the GetMaxPlaydaySelection method prompts again when the input is invalid.
+        /// </summary>
         [Fact]
         public void GetMaxPlaydaySelection_ShouldPromptAgain_WhenInvalidInput()
         {

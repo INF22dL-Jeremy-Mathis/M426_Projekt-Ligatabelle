@@ -2,19 +2,32 @@
 {
   public class Program
   {
-    // Validates if the execution folder is "soccer-results"
+    /// <summary>
+    /// Validates if the execution folder is "soccer-results".
+    /// </summary>
+    /// <param name="path">The path to validate.</param>
+    /// <returns>True if the folder name is "soccer-results"; otherwise, false.</returns>
     public static bool IsSoccerResultsFolder(string path)
     {
       return path.Replace('/', '\\').Contains("\\soccer-results");
     }
 
-    // Retrieves available ligas
+    /// <summary>
+    /// Retrieves available ligas from the specified path.
+    /// </summary>
+    /// <param name="path">The path to search for ligas.</param>
+    /// <returns>A list of available liga names.</returns>
     public static List<string> GetAvailableLigas(string path)
     {
       return Directory.GetDirectories(path).Select(Path.GetFileName).ToList();
     }
 
-    // Selects a liga based on input
+    /// <summary>
+    /// Selects a liga based on user input.
+    /// </summary>
+    /// <param name="ligas">The list of available ligas.</param>
+    /// <param name="input">The user input.</param>
+    /// <returns>The selected liga name, or null if invalid input.</returns>
     public static string SelectLiga(List<string> ligas, string input)
     {
       if (int.TryParse(input, out int selection) && selection >= 1 && selection <= ligas.Count)
@@ -24,14 +37,23 @@
       return ligas.Contains(input) ? input : null;
     }
 
-    // Retrieves match data (.txt files) up to a specified playday
+    /// <summary>
+    /// Retrieves match data from .txt files up to a specified playday.
+    /// </summary>
+    /// <param name="ligaPath">The path to the liga directory.</param>
+    /// <param name="maxPlayday">The maximum playday to retrieve data for.</param>
+    /// <returns>A list of match results.</returns>
     public static List<MatchResult> GetData(string ligaPath, int? maxPlayday = null)
     {
       var files = Directory.GetFiles(ligaPath, "*.txt").OrderBy(f => f).Take(maxPlayday ?? int.MaxValue);
       return files.SelectMany(file => File.ReadAllLines(file).Select(ParseMatchResult)).ToList();
     }
 
-    // Parses a match result from a string
+    /// <summary>
+    /// Parses a match result from a string.
+    /// </summary>
+    /// <param name="match">The match result string.</param>
+    /// <returns>A MatchResult object representing the parsed match result.</returns>
     public static MatchResult ParseMatchResult(string match)
     {
       var teams = match.Split(':').Select(t => t.Trim()).ToArray();
@@ -67,7 +89,11 @@
       };
     }
 
-    // Groups match results by team and calculates aggregate statistics
+    /// <summary>
+    /// Groups match results by team and calculates aggregate statistics.
+    /// </summary>
+    /// <param name="results">The list of match results.</param>
+    /// <returns>A list of aggregated team results.</returns>
     public static List<TeamResult> GroupByTeam(List<MatchResult> results)
     {
       return results
@@ -87,7 +113,11 @@
           .ToList();
     }
 
-    // Sorts teams based on multiple criteria
+    /// <summary>
+    /// Sorts teams based on Points (Descending), Goal Difference (Descending), Wins (Descending), Name (Ascending).
+    /// </summary>
+    /// <param name="teams">The list of TeamResult objects.</param>
+    /// <returns>A sorted list of team results.</returns>
     public static List<TeamResult> SortTeams(List<TeamResult> teams)
     {
       return teams
@@ -103,7 +133,12 @@
           .ToList();
     }
 
-    // Prints the liga table
+    /// <summary>
+    /// Prints the liga table to the console.
+    /// </summary>
+    /// <param name="ligaResults">The list of team results to print.</param>
+    /// <param name="liga">The name of the liga.</param>
+    /// <param name="bisSpieltag">The maximum playday to include in the table.</param>
     public static void PrintLigaTable(List<TeamResult> ligaResults, string liga, int? bisSpieltag)
     {
       var header = bisSpieltag.HasValue
@@ -121,7 +156,11 @@
       }
     }
 
-    // Queries the user for the maximum playday
+    /// <summary>
+    /// Queries the user for the maximum playday to calculate the table for.
+    /// </summary>
+    /// <param name="totalSpieltage">The total number of playdays available.</param>
+    /// <returns>The playday selected by the user, or null if all playdays should be included.</returns>
     public static int? GetMaxPlaydaySelection(int totalSpieltage)
     {
       while (true)
@@ -130,11 +169,10 @@
         var input = Console.ReadLine();
         if (string.IsNullOrWhiteSpace(input)) return null;
         if (int.TryParse(input, out var spieltag) && spieltag >= 1 && spieltag <= totalSpieltage) return spieltag;
-        Console.WriteLine($"Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und {totalSpieltage} ein.");
+        Console.WriteLine($"\nUngültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und {totalSpieltage} ein.");
       }
     }
 
-    // Main method
     public static void Main(string[] args)
     {
       while (true)
@@ -143,12 +181,14 @@
 
         var execFolderPath = Directory.GetCurrentDirectory();
 
+        // Validate the execution folder
         if (!IsSoccerResultsFolder(execFolderPath))
         {
           Console.WriteLine("Ungültiger Ordner, stelle sicher dass die Anwendung im Ordner \"soccer-results\" gestartet wurde");
           Environment.Exit(0);
         }
 
+        // Retrieve and display available ligas
         var ligas = GetAvailableLigas(execFolderPath);
         Console.WriteLine("Verfügbare Ligen:");
         for (var i = 0; i < ligas.Count; i++) Console.WriteLine($"[{i + 1}] {ligas[i]}");
@@ -156,6 +196,7 @@
         string ligaSelection;
         do
         {
+          // Prompt user to select a liga or exit
           Console.Write("\nNummer oder Name der Liga eingeben oder mittels 'exit' die Anwendung verlassen: ");
           var input = Console.ReadLine();
 
@@ -172,13 +213,16 @@
         var pathToLiga = Path.Combine(execFolderPath, ligaSelection);
         var totalSpieltage = Directory.GetFiles(pathToLiga, "*.txt").Length;
 
-        bisSpieltag = GetMaxPlaydaySelection(totalSpieltage);
-        var matchResultsList = GetData(pathToLiga, bisSpieltag);
-        var groupedTeams = GroupByTeam(matchResultsList);
-        var ligaResultsList = SortTeams(groupedTeams);
 
+        bisSpieltag = GetMaxPlaydaySelection(totalSpieltage);     // Query user for maximum playday
+        var matchResultsList = GetData(pathToLiga, bisSpieltag);  // Retrieve match data from .txt files
+        var groupedTeams = GroupByTeam(matchResultsList);         // Group match results by team
+        var ligaResultsList = SortTeams(groupedTeams);            // Sort teams
+
+        // Print the results table
         PrintLigaTable(ligaResultsList, ligaSelection, bisSpieltag);
 
+        // Reset the current directory and clear the console for the next input
         Directory.SetCurrentDirectory(execFolderPath);
         Console.Write("\n\nDrücke eine Beliebige Taste um fortzufahren");
         Console.ReadKey();
