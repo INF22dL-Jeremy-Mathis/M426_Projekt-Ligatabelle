@@ -1,0 +1,4 @@
+TeamA 4 : 0 TeamC
+TeamB 2 : 1 TeamE
+TeamD 0 : 5 TeamF
+TeamG 1 : 1 TeamH

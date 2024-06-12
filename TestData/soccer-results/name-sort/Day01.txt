@@ -1,0 +1,4 @@
+TeamA 1 : 1 TeamB
+TeamC 1 : 1 TeamD
+TeamE 1 : 1 TeamF
+TeamG 1 : 1 TeamH
