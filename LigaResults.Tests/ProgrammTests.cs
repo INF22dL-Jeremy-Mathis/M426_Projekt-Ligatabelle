@@ -257,5 +257,132 @@ namespace LigaResults.Tests
             // Assert
             Assert.Equal(3, result);
         }
+
+        [Fact]
+        public void GetDataUpToDay_ShouldReturnCorrectResults_UpToDay1()
+        {
+            // Arrange
+            string path = Path.Combine(GetTestDataPath(), "sort-difference");
+            int playday = 1;
+            var expectedData = new List<MatchResult>
+            {
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamA", GoalsShot = 5, GoalsTaken = 0, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamB", GoalsShot = 0, GoalsTaken = 5, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamC", GoalsShot = 6, GoalsTaken = 1, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamD", GoalsShot = 1, GoalsTaken = 6, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamE", GoalsShot = 4, GoalsTaken = 0, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamF", GoalsShot = 0, GoalsTaken = 4, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamG", GoalsShot = 3, GoalsTaken = 3, Wins = 0, Losses = 0, Draws = 1 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamH", GoalsShot = 3, GoalsTaken = 3, Wins = 0, Losses = 0, Draws = 1 }
+                }
+            };
+
+            // Act
+            var result = Program.GetData(path, playday);
+
+            // Assert
+            Assert.Equal(expectedData.Count, result.Count);
+            for (int i = 0; i < expectedData.Count; i++)
+            {
+                Assert.Equal(expectedData[i].Team1.TeamName, result[i].Team1.TeamName);
+                Assert.Equal(expectedData[i].Team1.GoalsShot, result[i].Team1.GoalsShot);
+                Assert.Equal(expectedData[i].Team1.GoalsTaken, result[i].Team1.GoalsTaken);
+                Assert.Equal(expectedData[i].Team1.Wins, result[i].Team1.Wins);
+                Assert.Equal(expectedData[i].Team1.Losses, result[i].Team1.Losses);
+                Assert.Equal(expectedData[i].Team1.Draws, result[i].Team1.Draws);
+                Assert.Equal(expectedData[i].Team2.TeamName, result[i].Team2.TeamName);
+                Assert.Equal(expectedData[i].Team2.GoalsShot, result[i].Team2.GoalsShot);
+                Assert.Equal(expectedData[i].Team2.GoalsTaken, result[i].Team2.GoalsTaken);
+                Assert.Equal(expectedData[i].Team2.Wins, result[i].Team2.Wins);
+                Assert.Equal(expectedData[i].Team2.Losses, result[i].Team2.Losses);
+                Assert.Equal(expectedData[i].Team2.Draws, result[i].Team2.Draws);
+            }
+        }
+
+        [Fact]
+        public void GetDataUpToDay_ShouldReturnCorrectResults_UpToDay2()
+        {
+            // Arrange
+            string path = Path.Combine(GetTestDataPath(), "sort-difference");
+            int playday = 2;
+            var expectedData = new List<MatchResult>
+            {
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamA", GoalsShot = 5, GoalsTaken = 0, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamB", GoalsShot = 0, GoalsTaken = 5, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamC", GoalsShot = 6, GoalsTaken = 1, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamD", GoalsShot = 1, GoalsTaken = 6, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamE", GoalsShot = 4, GoalsTaken = 0, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamF", GoalsShot = 0, GoalsTaken = 4, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamG", GoalsShot = 3, GoalsTaken = 3, Wins = 0, Losses = 0, Draws = 1 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamH", GoalsShot = 3, GoalsTaken = 3, Wins = 0, Losses = 0, Draws = 1 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamA", GoalsShot = 4, GoalsTaken = 0, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamC", GoalsShot = 0, GoalsTaken = 4, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamB", GoalsShot = 2, GoalsTaken = 1, Wins = 1, Losses = 0, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamE", GoalsShot = 1, GoalsTaken = 2, Wins = 0, Losses = 1, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamD", GoalsShot = 0, GoalsTaken = 5, Wins = 0, Losses = 1, Draws = 0 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamF", GoalsShot = 5, GoalsTaken = 0, Wins = 1, Losses = 0, Draws = 0 }
+                },
+                new MatchResult
+                {
+                    Team1 = new TeamMatchResult { TeamName = "TeamG", GoalsShot = 1, GoalsTaken = 1, Wins = 0, Losses = 0, Draws = 1 },
+                    Team2 = new TeamMatchResult { TeamName = "TeamH", GoalsShot = 1, GoalsTaken = 1, Wins = 0, Losses = 0, Draws = 1 }
+                }
+            };
+
+            // Act
+            var result = Program.GetData(path, playday);
+
+            // Assert
+            Assert.Equal(expectedData.Count, result.Count);
+            for (int i = 0; i < expectedData.Count; i++)
+            {
+                Assert.Equal(expectedData[i].Team1.TeamName, result[i].Team1.TeamName);
+                Assert.Equal(expectedData[i].Team1.GoalsShot, result[i].Team1.GoalsShot);
+                Assert.Equal(expectedData[i].Team1.GoalsTaken, result[i].Team1.GoalsTaken);
+                Assert.Equal(expectedData[i].Team1.Wins, result[i].Team1.Wins);
+                Assert.Equal(expectedData[i].Team1.Losses, result[i].Team1.Losses);
+                Assert.Equal(expectedData[i].Team1.Draws, result[i].Team1.Draws);
+                Assert.Equal(expectedData[i].Team2.TeamName, result[i].Team2.TeamName);
+                Assert.Equal(expectedData[i].Team2.GoalsShot, result[i].Team2.GoalsShot);
+                Assert.Equal(expectedData[i].Team2.GoalsTaken, result[i].Team2.GoalsTaken);
+                Assert.Equal(expectedData[i].Team2.Wins, result[i].Team2.Wins);
+                Assert.Equal(expectedData[i].Team2.Losses, result[i].Team2.Losses);
+                Assert.Equal(expectedData[i].Team2.Draws, result[i].Team2.Draws);
+            }
+        }
+
+
+
     }
 }
